@@ -43,17 +43,19 @@ export async function getStaticProps() {
 
   const apartmentsData = await getProperties(notionData.map((c) => c['URL']));
 
-  const housingWithPhotos = notionData.map((c, i) => ({
+  const housingWithData = notionData.map((c, i) => ({
     ...c,
     name: apartmentsData[i].name,
     photos: apartmentsData[i].photos,
     price: apartmentsData[i].price,
     url: apartmentsData[i].url,
+    lat: apartmentsData[i].lat,
+    lng: apartmentsData[i].lng,
   }));
 
   return {
     props: {
-      apartments: housingWithPhotos,
+      apartments: housingWithData,
     },
   };
 }

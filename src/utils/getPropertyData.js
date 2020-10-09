@@ -1,14 +1,30 @@
 import puppeteer from 'puppeteer';
 
 async function getDataFromPage(page, link) {
-  const element = await page.$('script[type="application/ld+json"]');
-  const content = await page.evaluate(
+  const dataElement = await page.$('script[type="application/ld+json"]');
+  const dataContent = await page.evaluate(
     (element) => element.textContent,
-    element
+    dataElement
   );
-  const data = JSON.parse(content);
+  const data = JSON.parse(dataContent);
   const photos = data.photo.map((o) => o.contentUrl);
-  return { photos, name: data.name, price: data.offers.price, url: link };
+
+  const mapElement = await page.$(
+    'script[type="application/json"][data-object-map-config]'
+  );
+  const mapContent = await page.evaluate(
+    (element) => element.textContent,
+    mapElement
+  );
+  const mapData = JSON.parse(mapContent);
+  return {
+    photos,
+    name: data.name,
+    price: data.offers.price,
+    url: link,
+    lat: mapData.lat,
+    lng: mapData.lng,
+  };
 }
 
 export default async function getProperties(links) {
