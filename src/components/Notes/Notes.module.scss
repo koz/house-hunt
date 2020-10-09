@@ -1,0 +1,21 @@
+.note {
+  display: flex;
+  width: 100%;
+
+  & > ul {
+    margin-left: 3.2rem;
+  }
+}
+
+.note:first-child > .noteTitle {
+  margin-left: 2.4rem;
+}
+
+.noteTitle {
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.noteList {
+  font-size: 1.4rem;
+}

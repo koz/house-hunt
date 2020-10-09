@@ -1,0 +1,51 @@
+.picture {
+  width: 30%;
+
+  &:not(:first-child) {
+    margin-left: 1.6rem;
+  }
+}
+
+.gallery {
+  display: flex;
+  overflow: scroll;
+  margin-top: 0.8rem;
+}
+
+.apartment {
+  &:not(:first-child) {
+    margin-top: 6.4rem;
+  }
+}
+
+.notes {
+  margin-top: 0.8rem;
+  width: calc(90% + 3.2rem);
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 1.6rem;
+}
+
+.apartmentTitle,
+.title {
+  margin-left: 2.4rem;
+}
+
+.apartmentTitle {
+  font-size: 3.2rem;
+}
+
+.apartmentPrice {
+  margin-left: 2.4rem;
+  font-size: 1.6rem;
+}
+
+.apartamentName {
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 4.2rem;
+  font-weight: 500;
+}
