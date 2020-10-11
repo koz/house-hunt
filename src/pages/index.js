@@ -1,34 +1,36 @@
+import { useState, useRef } from 'react';
 import cx from 'classnames';
 
-import Notes from '../components/Notes';
+import Header from '../components/Header';
+import Apartment from '../components/Apartment';
 
 import styles from '../styles/Home.module.scss';
 import getProperties from '../utils/getPropertyData';
 
 export default function Home(props) {
+  const listRef = useRef(null);
+  const [apartmentInView, setApartmentInView] = useState();
+
   return (
-    <div>
-      <h1 className={styles.title}>Apartment Hunting</h1>
-      <div>
-        {props.apartments.map((ap) => (
-          <div key={ap.url} className={styles.apartment}>
-            <div className={styles.apartmentTitle}>
-              <a href={ap.url} className={styles.apartamentName}>
-                {ap.name}
-              </a>
-              <span className={styles.apartmentPrice}>€{ap.price}</span>
-            </div>
-            <div className={styles.gallery}>
-              {ap.photos.map((img) => (
-                <img key={img} className={styles.picture} src={img} />
-              ))}
-            </div>
-            <div className={styles.notes}>
-              <Notes title={'What we like'} content={ap['Like']} />
-              <Notes title={'What we dislike'} content={ap['Dislike']} />
-              <Notes title={'Questions'} content={ap['Questions']} />
-            </div>
-          </div>
+    <div className={styles.container}>
+      <Header apartments={props.apartments} apartmentInView={apartmentInView} />
+      <div ref={listRef} className={styles.apartmentsList}>
+        {props.apartments.map((ap, i) => (
+          <Apartment
+            data-anchor={ap.url}
+            key={ap.url}
+            url={ap.url}
+            name={ap.name}
+            price={ap.price}
+            photos={ap.photos}
+            likeContent={ap['Like']}
+            dislikeContent={ap['Dislike']}
+            questionsContent={ap['Questions']}
+            containerRef={listRef}
+            onView={() => {
+              setApartmentInView(i);
+            }}
+          />
         ))}
       </div>
     </div>
@@ -36,9 +38,8 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const notionPageID = 'a3ebaa4e7dd14469a5d31147f9e70cc4';
   const notionData = await fetch(
-    `https://notion-api.splitbee.io/v1/table/${notionPageID}`
+    `https://notion-api.splitbee.io/v1/table/${process.env.NOTION_TABLE_ID}`
   ).then((res) => res.json());
 
   const apartmentsData = await getProperties(notionData.map((c) => c['URL']));

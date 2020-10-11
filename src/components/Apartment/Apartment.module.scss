@@ -1,0 +1,74 @@
+@import '../../styles/breakpoints';
+
+.apartment {
+  scroll-snap-align: start;
+  height: 90vh;
+  // padding-top: 140px;
+
+  // @include md {
+  //   padding-top: 300px;
+  // }
+
+  // @include lg {
+  //   padding-top: 230px;
+  // }
+}
+
+.picture {
+  width: 80%;
+
+  &:not(:first-child) {
+    margin-left: 0.8rem;
+  }
+
+  @include lg {
+    width: 30%;
+
+    &:not(:first-child) {
+      margin-left: 1.6rem;
+    }
+  }
+}
+
+.gallery {
+  display: flex;
+  overflow: scroll;
+  margin-top: 0.8rem;
+}
+
+.notes {
+  margin-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+
+  @include lg {
+    margin-top: 0.8rem;
+    width: calc(90% + 3.2rem);
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1.6rem;
+  }
+}
+
+.apartmentTitle,
+.title {
+  margin-left: 1.6rem;
+
+  @include lg {
+    margin-left: 2.4rem;
+  }
+}
+
+.apartmentTitle {
+  font-size: 3.2rem;
+}
+
+.apartmentPrice {
+  margin-left: 2.4rem;
+  font-size: 1.6rem;
+}
+
+.apartamentName {
+  text-decoration: underline;
+}

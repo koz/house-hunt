@@ -1,0 +1,26 @@
+// Small
+@mixin sm-only {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+// Medium breakpoint
+@mixin md {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
+
+@mixin md-only {
+  @media (min-width: 768px) and (max-width: 1023px) {
+    @content;
+  }
+}
+
+// Large breakpoint
+@mixin lg {
+  @media (min-width: 1024px) {
+    @content;
+  }
+}

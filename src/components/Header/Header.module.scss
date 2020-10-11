@@ -1,0 +1,52 @@
+@import '../../styles/breakpoints.scss';
+
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 4.2rem;
+  font-weight: 500;
+  margin-left: 1.6rem;
+
+  @include lg {
+    margin-left: 2.4rem;
+  }
+}
+
+.map {
+  position: fixed;
+  right: 0;
+  bottom: 3.2rem;
+  transition: opacity 250ms ease-in-out;
+
+  @include lg {
+    padding-right: 2.4rem;
+  }
+}
+
+.mapButton {
+  padding: 1rem;
+  white-space: nowrap;
+  transition: opacity 250ms ease-in-out;
+
+  @include lg {
+    padding: 1rem 2.4rem;
+  }
+}
+
+.closeMapButton {
+  position: fixed;
+  z-index: 2;
+  left: 50%;
+  top: 0.8rem;
+
+  @include lg {
+    left: auto;
+    top: 2.4rem;
+    right: 38.5%;
+  }
+}

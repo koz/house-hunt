@@ -1,14 +1,31 @@
+@import '../../styles/breakpoints';
+
 .note {
-  display: flex;
   width: 100%;
+  display: grid;
+  grid-template-columns: 30% 1fr;
+
+  @include lg {
+    display: flex;
+  }
 
   & > ul {
     margin-left: 3.2rem;
   }
-}
 
-.note:first-child > .noteTitle {
-  margin-left: 2.4rem;
+  &:first-child > .noteTitle {
+    @include lg {
+      margin-left: 2.4rem;
+    }
+  }
+
+  &:not(:first-child) {
+    margin-top: 2.4rem;
+
+    @include lg {
+      margin-top: 0;
+    }
+  }
 }
 
 .noteTitle {
