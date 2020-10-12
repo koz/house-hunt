@@ -1,4 +1,5 @@
 import puppeteer from 'puppeteer';
+// import chrome from 'chrome-aws-lambda';
 
 async function getDataFromPage(page, link) {
   const dataElement = await page.$('script[type="application/ld+json"]');
@@ -28,7 +29,10 @@ async function getDataFromPage(page, link) {
 }
 
 export default async function getProperties(links) {
-  const browser = await puppeteer.launch({ headless: false });
+  const browser = await puppeteer.launch({
+    args: ['--no-sandbox'],
+    headless: false,
+  });
   const data = await Promise.all(
     links.map(async (l) => {
       const page = await browser.newPage();
