@@ -18,6 +18,9 @@
     "classnames": "^2.2.6",
     "google-map-react": "^2.1.7",
     "next": "^9.5.4",
+    "puppeteer": "^5.3.1",
+    "puppeteer-extra": "^3.1.15",
+    "puppeteer-extra-plugin-stealth": "^2.6.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "sass": "^1.27.0"
@@ -33,7 +36,6 @@
     "eslint": "^7.10.0",
     "eslint-config-prettier": "^6.12.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "prettier": "^2.1.2",
-    "puppeteer": "^5.3.1"
+    "prettier": "^2.1.2"
   }
 }
