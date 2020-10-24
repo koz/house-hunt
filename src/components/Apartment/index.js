@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import cx from 'classnames'
 
 import useIsInView from '../../hooks/useIsInView';
 
@@ -6,11 +7,17 @@ import styles from './Apartment.module.scss';
 
 import Notes from '../Notes';
 
+const labels = {
+  'inonderhandeling': 'Under negotiation',
+  'verhuurd': 'Rented'
+}
+
 const Apartment = ({
   url,
   name,
   price,
   photos,
+  status,
   likeContent,
   dislikeContent,
   questionsContent,
@@ -19,7 +26,6 @@ const Apartment = ({
   ['data-anchor']: anchor,
 }) => {
   const { isInView, ref } = useIsInView(containerRef?.current);
-
   useEffect(() => {
     if (isInView) {
       onView();
@@ -29,14 +35,20 @@ const Apartment = ({
   return (
     <div ref={ref} className={styles.apartment} data-anchor={anchor}>
       <div className={styles.apartmentTitle}>
-        <a href={url} className={styles.apartamentName}>
+        <a href={url} className={cx(styles.apartamentName, {[styles.apartamentNameUnavailable]: status === 'verhuurd'})}>
           {name}
         </a>
         <span className={styles.apartmentPrice}>€{price}</span>
+        {
+          status !== 'beschikbaar' && labels[status] ? (
+            <span className={styles.apartmentStatus}>{labels[status]}</span>
+          ) : null
+        }
+        <span></span>
       </div>
       <div className={styles.gallery}>
-        {photos.map((img) => (
-          <img key={img} className={styles.picture} src={img} />
+        {photos.map((img, i) => (
+          <img key={`${img}-${i}`} className={styles.picture} src={img} />
         ))}
       </div>
       <div className={styles.notes}>

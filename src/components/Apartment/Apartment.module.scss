@@ -3,15 +3,6 @@
 .apartment {
   scroll-snap-align: start;
   height: 90vh;
-  // padding-top: 140px;
-
-  // @include md {
-  //   padding-top: 300px;
-  // }
-
-  // @include lg {
-  //   padding-top: 230px;
-  // }
 }
 
 .picture {
@@ -64,11 +55,21 @@
   font-size: 3.2rem;
 }
 
-.apartmentPrice {
+.apartmentPrice,
+.apartmentStatus {
   margin-left: 2.4rem;
   font-size: 1.6rem;
 }
 
 .apartamentName {
   text-decoration: underline;
+}
+
+.apartamentNameUnavailable {
+  text-decoration: line-through;
+}
+
+.apartmentStatus {
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
