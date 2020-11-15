@@ -2,6 +2,11 @@ html {
   font-size: 62.5%; /* 1 rem = 10px; 10px/16px = 62.5% */
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
 body {
   font-size: 1.6rem; /* resets default font-size to 16px (and scales what user defines in browser settings) */
 }
