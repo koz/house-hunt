@@ -63,6 +63,7 @@ export default async function getProperties(links) {
   const data = await Promise.all(
     links.map(async (l) => {
       const page = await browser.newPage();
+      await page.setDefaultNavigationTimeout(0);
       await page.goto(l);
       return await getDataFromPage(page, l);
     })
